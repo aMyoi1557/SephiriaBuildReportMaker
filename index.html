@@ -360,8 +360,8 @@
 
         /* 단계 안내 텍스트 */
         .check-subgroup-step {
-            font-size: 11px;
-            color: #a395a6;
+            font-size: 12px;
+            color: #ffffff;
             margin-bottom: 6px;
             text-align: center;
         }
@@ -384,6 +384,20 @@
             border-radius: 4px;
             font-size: 13px;
             text-align: center; /* 입력한 숫자도 중앙 정렬 */
+        }
+
+        /* 뿌리거둠 입력 칸의 위아래 화살표(스피너) 제거 */
+        .check-subgroup input[type="number"]::-webkit-outer-spin-button,
+        .check-subgroup input[type="number"]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            appearance: none; /* 표준 속성 */
+            margin: 0;
+        }
+
+        .check-subgroup input[type="number"] {
+            -webkit-appearance: none; /* WebKit/Blink 엔진 */
+            -moz-appearance: textfield; /* 파이어폭스 전용 레거시 대응 */
+            appearance: none; /* 최신 브라우저용 표준 속성 */
         }
 
         /* 선택지 항목: 세로선을 넣기 위한 relative 위치 및 간격 설정 */
@@ -492,7 +506,7 @@
         데이터를 입력하면 갈무리하여 이미지로 만들어 드립니다 :)<br>
         <span class="highlight">!!! 이미지를 준비하시기 전 꼭 가이드를 봐주세요 !!!</span>
     </p>
-    
+
     <!-- 입력 영역 -->
     <div class="input-grid">
 
@@ -890,7 +904,7 @@ function createRootCheckGroups(container, data) {
             if (item.stepText) {
                 const stepTextDiv = document.createElement("div");
                 stepTextDiv.className = "check-subgroup-step";
-                stepTextDiv.textContent = `${item.stepText}점`;
+                stepTextDiv.textContent = `${item.stepText}`;
                 subgroup.appendChild(stepTextDiv);
             }
 
