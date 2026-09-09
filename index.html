@@ -107,7 +107,7 @@
         }
 
         .tooltip-image img {
-            max-width: 1430px;            /* 이미지 짤림 방지 */
+            max-width: 960px;            /* 이미지 짤림 방지 */
             height: auto;
             display: block;
             border-radius: 4px;
@@ -245,17 +245,6 @@
             margin: 0;
         }
 
-        /* 인벤토리 수 입력 상자 스타일 */
-        #inventoryCountInput {
-            width: 80px;
-            padding: 6px;
-            background: #17151d;
-            color: #fff;
-            border: 1px solid #756178;
-            border-radius: 4px;
-            font-size: 14px;
-        }
-
         /* 재능/콤보 통합 상자 스타일 */
         .radio-container-box {
             background: #211d27;
@@ -306,109 +295,6 @@
             width: auto;
             object-fit: contain;
             vertical-align: middle;
-        }
-
-        /* 뿌리거둠 그룹 (4열 그리드로 변경) */
-        .check-group {
-            background: #211d27;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr); /* 한 줄에 4개 배치 */
-            gap: 8px;
-        }
-
-        /* 그룹 제목은 전체 너비를 차지하도록 설정 */
-        .check-group-title {
-            font-weight: bold;
-            grid-column: 1 / -1;
-            margin-bottom: 4px;
-        }
-
-        /* 뿌리거둠 개별 입력 항목 상자 (중앙 정렬 처리) */
-        .check-subgroup {
-            display: flex;
-            flex-direction: column;
-            align-items: center; /* 내부 요소 전체 가로 중앙 정렬 */
-            text-align: center;
-        }
-
-        /* 뿌리거둠 제목 (아이콘 + 텍스트 중앙 정렬) */
-        .check-subgroup-title {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* 중앙 정렬 */
-            gap: 6px;
-            font-size: 12px;
-            font-weight: bold;
-            color: #d8c9db;
-            margin-bottom: 2px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 100%;
-        }
-
-        /* 뿌리거둠 아이콘 스타일 */
-        .root-icon {
-            width: 16px;
-            height: 16px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-
-        /* 단계 안내 텍스트 */
-        .check-subgroup-step {
-            font-size: 12px;
-            color: #ffffff;
-            margin-bottom: 6px;
-            text-align: center;
-        }
-
-        /* 입력 칸 감싸는 라벨 */
-        .check-subgroup .check-item {
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        /* 입력 칸 숫자 중앙 정렬 */
-        .check-subgroup input[type="number"] {
-            width: 60px;
-            box-sizing: border-box;
-            padding: 4px 6px;
-            background: #17151d;
-            color: #fff;
-            border: 1px solid #756178;
-            border-radius: 4px;
-            font-size: 13px;
-            text-align: center; /* 입력한 숫자도 중앙 정렬 */
-        }
-
-        /* 뿌리거둠 입력 칸의 위아래 화살표(스피너) 제거 */
-        .check-subgroup input[type="number"]::-webkit-outer-spin-button,
-        .check-subgroup input[type="number"]::-webkit-inner-spin-button {
-            -webkit-appearance: none;
-            appearance: none; /* 표준 속성 */
-            margin: 0;
-        }
-
-        .check-subgroup input[type="number"] {
-            -webkit-appearance: none; /* WebKit/Blink 엔진 */
-            -moz-appearance: textfield; /* 파이어폭스 전용 레거시 대응 */
-            appearance: none; /* 최신 브라우저용 표준 속성 */
-        }
-
-        /* 선택지 항목: 세로선을 넣기 위한 relative 위치 및 간격 설정 */
-        .check-item {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            width: auto;
-            position: relative; /* 가상 요소(세로선) 기준점 */
         }
 
         /* 선택지 사이사이 얇은 밝은색 세로 구분선 */
@@ -512,7 +398,7 @@
 
         <!-- ① START -->
         <section class="input-section">
-            <h2>① 출발 준비 데이터</h2>
+            <h2>① 출발 데이터</h2>
 
             <!-- 코스튬 -->
             <div class="field">
@@ -525,8 +411,21 @@
             <div id="talentContainer"></div>
 
             <!-- 뿌리거둠 -->
-            <h3>뿌리거둠</h3>
-            <div id="rootContainer"></div>
+            <h3>
+                뿌리거둠
+            </h3>
+            <div class="upload-box">
+                <div class="file-upload-wrapper">
+                    <input type="file" id="rootInput" accept="image/*">
+                    
+                    <!-- 물음표 아이콘 & 가이드 이미지 툴팁 -->
+                    <div class="tooltip-container">
+                        <span class="help-icon">?</span>
+                        <div class="tooltip-image">
+                            <img src="assets/guide/roots_guide.png" alt="뿌리거둠 가이드">
+                        </div>
+                    </div>
+                </div>
         </section>
 
         <!-- ② IN GAME -->
@@ -534,11 +433,9 @@
             <h2>② 인게임 데이터</h2>
 
             <!-- 인벤토리 -->
-            <div class="title-with-input">
-                <h3>인벤토리 줄 수 :</h3>
-                <input type="number" id="inventoryCountInput" min="0" value="0" placeholder="개수">
-            </div>
-            <!-- 예시: 인벤토리 업로드 영역 -->
+            <h3>
+                인벤토리
+            </h3>
             <div class="upload-box">
                 <div class="file-upload-wrapper">
                     <input type="file" id="inventoryInput" accept="image/*">
@@ -552,10 +449,22 @@
                     </div>
                 </div>
             </div>
-
-            <!-- 콤보 -->
-            <h3>콤보</h3>
-            <div id="comboContainer"></div>
+            <h3>
+                콤보 추가 (선택)
+            </h3>
+            <div class="upload-box">
+                <div class="file-upload-wrapper">
+                    <input type="file" id="comboInput" accept="image/*">
+                    
+                    <!-- 물음표 아이콘 & 가이드 이미지 툴팁 -->
+                    <div class="tooltip-container">
+                        <span class="help-icon">?</span>
+                        <div class="tooltip-image">
+                            <img src="assets/guide/combo_guide.png" alt="콤보 가이드">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- ③ RESULT -->
@@ -666,126 +575,66 @@ const talentData = [
     {
         name: "분노",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/1_5.png" },
-            { name: "10", image: "assets/talent/1_10.png" },
-            { name: "20", image: "assets/talent/1_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/1_5.png"] },
+            { name: "10", image: ["assets/talent/1_5.png","assets/talent/1_10.png"] },
+            { name: "20", image: ["assets/talent/1_5.png","assets/talent/1_10.png","assets/talent/1_20.png"] }
         ]
     },
     {
         name: "신속",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/2_5.png" },
-            { name: "10", image: "assets/talent/2_10.png" },
-            { name: "20", image: "assets/talent/2_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/2_5.png"] },
+            { name: "10", image: ["assets/talent/2_5.png","assets/talent/2_10.png"] },
+            { name: "20", image: ["assets/talent/2_5.png","assets/talent/2_10.png","assets/talent/2_20.png"] }
         ]
     },
     {
         name: "생존",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/3_5.png" },
-            { name: "10", image: "assets/talent/3_10.png" },
-            { name: "20", image: "assets/talent/3_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/3_5.png"] },
+            { name: "10", image: ["assets/talent/3_5.png","assets/talent/3_10.png"] },
+            { name: "20", image: ["assets/talent/3_5.png","assets/talent/3_10.png","assets/talent/3_20.png"] }
         ]
     },
     {
         name: "인내",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/4_5.png" },
-            { name: "10", image: "assets/talent/4_10.png" },
-            { name: "20", image: "assets/talent/4_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/4_5.png"] },
+            { name: "10", image: ["assets/talent/4_5.png","assets/talent/4_10.png"] },
+            { name: "20", image: ["assets/talent/4_5.png","assets/talent/4_10.png","assets/talent/4_20.png"] }
         ]
     },
     {
         name: "지혜",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/5_5.png" },
-            { name: "10", image: "assets/talent/5_10.png" },
-            { name: "20", image: "assets/talent/5_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/5_5.png"] },
+            { name: "10", image: ["assets/talent/5_5.png","assets/talent/5_10.png"] },
+            { name: "20", image: ["assets/talent/5_5.png","assets/talent/5_10.png","assets/talent/5_20.png"] }
         ]
     },
     {
         name: "의지",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/6_5.png" },
-            { name: "10", image: "assets/talent/6_10.png" },
-            { name: "20", image: "assets/talent/6_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/6_5.png"] },
+            { name: "10", image: ["assets/talent/6_5.png","assets/talent/6_10.png"] },
+            { name: "20", image: ["assets/talent/6_5.png","assets/talent/6_10.png","assets/talent/6_20.png"] }
         ]
     },
     {
         name: "기지",
         levels: [
-            { name: "0", image: "assets/talent/0.png" },
-            { name: "5", image: "assets/talent/7_5.png" },
-            { name: "10", image: "assets/talent/7_10.png" },
-            { name: "20", image: "assets/talent/7_20.png" }
+            { name: "0", image: [] },
+            { name: "5", image: ["assets/talent/7_5.png"] },
+            { name: "10", image: ["assets/talent/7_5.png","assets/talent/7_10.png"] },
+            { name: "20", image: ["assets/talent/7_5.png","assets/talent/7_10.png","assets/talent/7_20.png"] }
         ]
     }
-];
-
-/* 뿌리거둠 DATA (stepText 속성 추가) */
-const rootData = [
-    {
-        name: "악마",
-        items: [
-            { name: "흉포한 손톱", stepText: "1/2/3/4/5/6/8" },
-            { name: "끈질긴 신체", stepText: "1/2/3/4/5/6/8" },
-            { name: "방호 갑주", stepText: "1/2/3" },
-            { name: "날렵한 발톱", stepText: "2/4" },
-            { name: "악의 기운", stepText: "1" },
-            { name: "전투 태세", stepText: "3" },
-            { name: "피의 축제", stepText: "3" },
-            { name: "가짜 선봉", stepText: "2" }
-        ]
-    },
-    {
-        name: "세계",
-        items: [
-            { name: "쇠퇴", stepText: "2/4/6" },
-            { name: "교류 단절", stepText: "1/2" },
-            { name: "기계장치의 반란", stepText: "1/2" },
-            { name: "증식", stepText: "1/3" }
-        ]
-    },
-    {
-        name: "계획",
-        items: [
-            { name: "탈취", stepText: "2/4" },
-            { name: "어지러움", stepText: "2/4" },
-            { name: "노후화", stepText: "1/2/3/4" },
-            { name: "긴장", stepText: "1" },
-            { name: "마음의 짐", stepText: "2" }
-        ]
-    }
-];
-
-/* 콤보 DATA (0레벨 및 tier: 0 명시) */
-const comboData = [
-    { name: "견고", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "그림자", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "빙하", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "호수", levels: [{ name: "0", tier: 0 }, { name: "3", tier: 1 }, { name: "6", tier: 2 }, { name: "9", tier: 3 }] },
-    { name: "바람노래", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "신비", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }] },
-    { name: "마법공학", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "얼음무구", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "행성", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "정밀", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "동료", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "잉걸불", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "먹구름", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "원소", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }] },
-    { name: "수호", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "교섭", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }] },
-    { name: "저주", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }] },
-    { name: "아카데미", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] },
-    { name: "연금술", levels: [{ name: "0", tier: 0 }, { name: "1", tier: 1 }, { name: "2", tier: 2 }, { name: "3", tier: 3 }] },
-    { name: "태양검", levels: [{ name: "0", tier: 0 }, { name: "2", tier: 1 }, { name: "4", tier: 2 }, { name: "6", tier: 3 }, { name: "8", tier: 4 }, { name: "10", tier: 5 }] }
 ];
 
 /* =========================================================
@@ -867,69 +716,6 @@ function createRadioGroups(container, data, prefix) {
     container.appendChild(mainBox);
 }
 
-function createRootCheckGroups(container, data) {
-    container.innerHTML = "";
-    let iconIndex = 1;
-
-    data.forEach((group) => {
-        const groupDiv = document.createElement("div");
-        groupDiv.className = "check-group";
-
-        const groupTitle = document.createElement("div");
-        groupTitle.className = "check-group-title";
-        groupTitle.textContent = group.name;
-        groupDiv.appendChild(groupTitle);
-
-        group.items.forEach((item) => {
-            const subgroup = document.createElement("div");
-            subgroup.className = "check-subgroup";
-
-            // 1. 제목 영역 (아이콘 + 텍스트)
-            const subgroupTitle = document.createElement("div");
-            subgroupTitle.className = "check-subgroup-title";
-
-            const iconImg = document.createElement("img");
-            iconImg.src = `assets/root/icons/${iconIndex}.png`;
-            iconImg.className = "root-icon";
-            iconImg.alt = item.name;
-
-            const titleText = document.createElement("span");
-            titleText.textContent = item.name;
-
-            subgroupTitle.appendChild(iconImg);
-            subgroupTitle.appendChild(titleText);
-            subgroup.appendChild(subgroupTitle);
-
-            // 2. stepText에 지정된 문자열 출력
-            if (item.stepText) {
-                const stepTextDiv = document.createElement("div");
-                stepTextDiv.className = "check-subgroup-step";
-                stepTextDiv.textContent = `${item.stepText}`;
-                subgroup.appendChild(stepTextDiv);
-            }
-
-            // 3. 입력 칸
-            const label = document.createElement("label");
-            label.className = "check-item";
-
-            const input = document.createElement("input");
-            input.type = "number";
-            input.min = "0";
-            input.step = "1";
-            input.value = "0";
-            input.placeholder = "값 입력";
-
-            label.appendChild(input);
-            subgroup.appendChild(label);
-            groupDiv.appendChild(subgroup);
-
-            iconIndex++;
-        });
-
-        container.appendChild(groupDiv);
-    });
-}
-
 /* =========================================================
    Select2 코스튬 아이콘 드롭다운 적용 및 UI 초기화
 ========================================================= */
@@ -964,8 +750,6 @@ jQuery(document).ready(function($) {
 
     // 3. 기타 라디오/체크박스 UI 생성
     createRadioGroups(document.getElementById("talentContainer"), talentData, "talent");
-    createRootCheckGroups(document.getElementById("rootContainer"), rootData);
-    createRadioGroups(document.getElementById("comboContainer"), comboData, "combo");
 });
 
 /* =========================================================
@@ -983,6 +767,45 @@ function loadImage(src) {
         img.onerror = () => reject(new Error(`Failed to load: ${src}`));
         img.src = src;
     });
+}
+
+// 픽셀 색 확인
+function colorCheck(src, color) {
+    for (let i=0;i<3;i++) {
+        if (Math.abs(src[i]-color[i])>5) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function zeroCheck(imgData) {
+    const d = imgData.data;
+
+    for (let i = 0; i < d.length; i += 4) {
+        const diffR = d[i];
+        const diffG = d[i + 1];
+        const diffB = d[i + 2];
+        if ([diffR,diffG,diffB]==[128,128,128]) {
+            return true;
+        }
+    }
+    return false;
+}
+
+// 두 Canvas Data 간의 오차율(MSE)을 계산하는 함수
+function calculateMSE(imgData1, imgData2) {
+    const d1 = imgData1.data;
+    const d2 = imgData2.data;
+    let sumSquaredError = 0;
+
+    for (let i = 0; i < d1.length; i += 4) {
+        const diffR = d1[i] - d2[i];
+        const diffG = d1[i + 1] - d2[i + 1];
+        const diffB = d1[i + 2] - d2[i + 2];
+        sumSquaredError += (diffR * diffR + diffG * diffG + diffB * diffB);
+    }
+    return sumSquaredError / (d1.length / 4);
 }
 
 // 1. 결과 이미지 만들기 (테스트 기능 실행)
@@ -1006,9 +829,12 @@ document.getElementById("makeButton").addEventListener("click", async function()
 
         /* ----------------------------------------------------
            ② 재능 처리 (x: 60 <-> 172, 시작 y: 373, y간격: 109 / 크기 108x101)
+
+           * 63, 382에 붙이기
         ---------------------------------------------------- */
-        let talentX = 60;
-        let talentY = 373;
+        let talentX = 63;
+        let talentY = 382;
+
         for (let i = 0; i < talentData.length; i++) {
             const checkedRadio = document.querySelector(`input[name="talent_group_${i}"]:checked`);
             if (checkedRadio) {
@@ -1016,34 +842,223 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 const levelObj = talentData[i].levels[levelIdx];
 
                 // level name이 "0"이 아닌 경우에만 이미지 배치, Y좌표 이동
-                if (levelObj && levelObj.name !== "0") {
-                    const talentImg = await loadImage(levelObj.image);
-                    ctx.drawImage(talentImg, talentX, talentY, 108, 101);
-                    if (talentX == 60) {
-                        talentX = 172;
-                    } else {
-                        talentX = 60;
-                        talentY += 109;
+                if (levelObj) {
+                    for (let ii = 0; ii < levelObj.image.length ; ii ++) {
+                        const talentImg = await loadImage(levelObj.image[ii]);
+                        ctx.drawImage(talentImg, talentX, talentY, 33, 33);
+                        talentX += 35;
                     }
+                    
+                    if (i < 3) {
+                        talentX = 63;
+                    } else {
+                        talentX = 174;
+                    }
+                    
+                    const indexY = (i+1) % 4;
+                    talentY = 382 + indexY * 53
                 }
             }
+        }
+        
+        /* ----------------------------------------------------
+           ③ 뿌리거둠 이미지 처리
+        ---------------------------------------------------- */
+        let roots = [[0,0,0,0,0,0,0,0],[0,0,0,0],[0,0,0,0,0]];
+        let rootsLen = [8,4,5];
+        let totalScore = 0;
+        let realScore = 0;
+
+        const rootFileInput = document.getElementById("rootInput");
+        if (rootFileInput && rootFileInput.files && rootFileInput.files[0]) {
+            const rootFile = rootFileInput.files[0];
+            const rootObjectURL = URL.createObjectURL(rootFile);
+
+            // 이미지에서 뿌리거둠 정보 추출
+            try {
+                const uploadedImg = await loadImage(rootObjectURL);
+        
+                // 1. 임시 캔버스에 업로드 이미지 로드
+                const tempCanvas = document.createElement("canvas");
+                const tempCtx = tempCanvas.getContext("2d", { willReadFrequently: true });
+                tempCanvas.width = uploadedImg.width;
+                tempCanvas.height = uploadedImg.height;
+                tempCtx.drawImage(uploadedImg, 0, 0);
+
+                // 2. 서버/로컬에 등록된 뿌리거둠 점수 아이콘 로드
+                const templateScores = [];
+                
+                for (let i = 0; i < 51; i++) {
+                    const iconImg = await loadImage(`assets/icons/roots/0_${i}.png`);
+                    
+                    // 비교용 임시 캔버스 추출 (아이콘 기본 크기에 맞춤 66 * 66)
+                    const iconCanvas = document.createElement("canvas");
+                    iconCanvas.width = 66;
+                    iconCanvas.height = 66;
+                    const iconCtx = iconCanvas.getContext("2d", { willReadFrequently: true });
+                    iconCtx.drawImage(iconImg, 0, 0, 66, 66);
+
+                    templateScores.push({
+                        index: i,
+                        imageData: iconCtx.getImageData(0, 0, 66, 66)
+                    });
+                }
+
+                const templateIcons = [[],[],[]];
+                for (let i = 0; i < 9; i++) {
+                    const iconImg = await loadImage(`assets/icons/roots/1_${i}.png`);
+                    
+                    // 비교용 임시 캔버스 추출 (아이콘 기본 크기에 맞춤 15 * 33)
+                    const iconCanvas = document.createElement("canvas");
+                    iconCanvas.width = 15;
+                    iconCanvas.height = 33;
+                    const iconCtx = iconCanvas.getContext("2d", { willReadFrequently: true });
+                    iconCtx.drawImage(iconImg, 0, 0, 15, 33);
+
+                    templateIcons[0].push({
+                        index: i,
+                        imageData: iconCtx.getImageData(0, 0, 15, 33)
+                    });
+                }
+                
+                for (let i = 0; i < 7; i++) {
+                    const iconImg = await loadImage(`assets/icons/roots/2_${i}.png`);
+                    
+                    // 비교용 임시 캔버스 추출 (아이콘 기본 크기에 맞춤 15 * 33)
+                    const iconCanvas = document.createElement("canvas");
+                    iconCanvas.width = 15;
+                    iconCanvas.height = 33;
+                    const iconCtx = iconCanvas.getContext("2d", { willReadFrequently: true });
+                    iconCtx.drawImage(iconImg, 0, 0, 15, 33);
+
+                    templateIcons[1].push({
+                        index: i,
+                        imageData: iconCtx.getImageData(0, 0, 15, 33)
+                    });
+                }
+                
+                for (let i = 0; i < 5; i++) {
+                    const iconImg = await loadImage(`assets/icons/roots/3_${i}.png`);
+                    
+                    // 비교용 임시 캔버스 추출 (아이콘 기본 크기에 맞춤 15 * 33)
+                    const iconCanvas = document.createElement("canvas");
+                    iconCanvas.width = 15;
+                    iconCanvas.height = 33;
+                    const iconCtx = iconCanvas.getContext("2d", { willReadFrequently: true });
+                    iconCtx.drawImage(iconImg, 0, 0, 15, 33);
+
+                    templateIcons[2].push({
+                        index: i,
+                        imageData: iconCtx.getImageData(0, 0, 15, 33)
+                    });
+                }
+
+                // 총점 크롭
+                const scoreData = tempCtx.getImageData(1514,220,66,66);
+                
+                let bestMatchIndex = -1;
+                let lowestMSE = Infinity;
+
+                // 템플릿과 MSE 비교
+                for (const tpl of templateScores) {
+                    const mse = calculateMSE(scoreData, tpl.imageData);
+                    if (mse < lowestMSE) {
+                        lowestMSE = mse;
+                        bestMatchIndex = tpl.index;
+                    }
+                }
+
+                realScore = bestMatchIndex;
+                
+                // 점수 크롭
+                let targetX = 82;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
+                let targetY = 279;   // 스크린샷 내 첫번째 콤보 아이콘 Y 좌표
+                
+                for (let rType = 0; rType<3 ; rType++) {
+                    for (let rIndex = 0; rIndex < rootsLen[rType]; rIndex ++) {
+                        const rootScoreData = tempCtx.getImageData(targetX,targetY,15,33);
+
+                        let bestMatchIndex = -1;
+                        let lowestMSE = Infinity;
+
+                        // 템플릿과 MSE 비교
+                        for (const tpl of templateIcons[rType]) {
+                            const mse = calculateMSE(rootScoreData, tpl.imageData);
+                            if (mse < lowestMSE) {
+                                lowestMSE = mse;
+                                bestMatchIndex = tpl.index;
+                            }
+                        }
+
+                        // 오차 한계값(Threshold) 이하일 경우 숫자 색을 보고 레벨 적용
+                        if (bestMatchIndex !== -1) {
+                            roots[rType][rIndex] = bestMatchIndex;
+                        }
+
+                        if (zeroCheck(rootScoreData)) {
+                            roots[rType][rIndex] = 0;
+                        }
+
+                        if (rIndex>5) {
+                            roots[rType][rIndex] = 0;
+                        }
+
+                        totalScore += roots[rType][rIndex];
+
+                        targetY += 138;
+                    }
+                    targetX += 456;
+                    targetY = 279;
+                }
+            } catch (err) {
+                console.error("뿌리거둠 이미지 자동 판별 중 오류:", err);
+            } finally {
+                URL.revokeObjectURL(rootObjectURL);
+            }
+
+            if (realScore - totalScore == 5) {
+                roots[0][6] = 3;
+                roots[0][7] = 2;
+            }
+            if (realScore - totalScore == 3) {
+                roots[0][6] = 3;
+                roots[0][7] = 0;
+            }
+            if (realScore - totalScore == 2) {
+                roots[0][6] = 0;
+                roots[0][7] = 2;
+            }
+            if (realScore - totalScore == 0) {
+                roots[0][6] = 0;
+                roots[0][7] = 0;
+            }
+
+            console.log(roots)
         }
 
         /* ----------------------------------------------------
            ③ 뿌리거둠 처리 (시작 x: 60, y: 648, 4열 그리드 / 크기 50x50 / 프레임 35)
            * tier 텍스트에 해당하는 이미지(assets/root/{tier}.png) 로드
         ---------------------------------------------------- */
-        const rootInputs = document.querySelectorAll("#rootContainer input[type='number']");
-        let rootIndex = 0;
-        let rootScore = 0;
+        for (let i = 0; i < 8+4+5; i++) {
 
-        for (let i = 0; i < rootInputs.length; i++) {
-            const inputValue = parseInt(rootInputs[i].value, 10) || 0;
-            rootScore += inputValue;
-            
+            let rootType;
+            let rootIndex;
+
+            if (i<8) {
+                rootType = 0;
+                rootIndex = i;
+            } else if (i<12) {
+                rootType = 1;
+                rootIndex = i - 8;
+            } else {
+                rootType = 2;
+                rootIndex = i - 12;
+            }
+
             // 그리드 좌표 계산 (가로 4개)
-            const col = rootIndex % 4;
-            const row = Math.floor(rootIndex / 4);
+            const col = i % 4;
+            const row = Math.floor(i / 4);
 
             const pad = 4;
             const gridSizeX = 54;
@@ -1052,10 +1067,10 @@ document.getElementById("makeButton").addEventListener("click", async function()
             let rx;
             let ry;
 
-            if (rootIndex < 8) {
+            if (i < 8) {
                 rx = 60 + pad + col * gridSizeX;
                 ry = 648 + pad + row * gridSizeY + 20;
-            } else if (rootIndex < 12) {
+            } else if (i < 12) {
                 rx = 60 + pad + col * gridSizeX;
                 ry = 648 + pad * 2 + row * gridSizeY + 50;
             } else {
@@ -1065,15 +1080,13 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 
 
             // 입력값을 그대로 파일 이름으로 지정 (예: 입력값 3 -> assets/root/3.png)
-            const rootImgSrc = `assets/root/${inputValue}.png`;
+            const rootImgSrc = `assets/root/${roots[rootType][rootIndex]}.png`;
             try {
                 const rootImg = await loadImage(rootImgSrc);
                 ctx.drawImage(rootImg, rx, ry, 50, 50);
             } catch (e) {
                 console.warn(`뿌리거둠 이미지 로드 실패: ${rootImgSrc}`);
             }
-
-            rootIndex++;
         }
         
         const rootIconSrc = `assets/root/rootIcon.png`;
@@ -1085,8 +1098,8 @@ document.getElementById("makeButton").addEventListener("click", async function()
         }
         
 
-        const scoreImgSrc2 = `assets/root/r${Math.floor(rootScore / 10)}.png`;
-        const scoreImgSrc1 = `assets/root/r${rootScore % 10}.png`;
+        const scoreImgSrc2 = `assets/root/r${Math.floor(totalScore / 10)}.png`;
+        const scoreImgSrc1 = `assets/root/r${totalScore % 10}.png`;
         try {
             const scoreImg2 = await loadImage(scoreImgSrc2);
             const scoreImg1 = await loadImage(scoreImgSrc1);
@@ -1099,60 +1112,301 @@ document.getElementById("makeButton").addEventListener("click", async function()
 
         /* ----------------------------------------------------
             ④ 인벤토리 이미지 처리
-            - inventoryCountInput의 수치만큼 반복 실행
-            - 예시 좌표: 
-            * 크롭: 원본 (x: 603, y: 180 + i * 120) 위치에서 714x114 크기
-            * 붙이기: 템플릿 (x: 383, y: 136 + i * 120) 위치에 714x114 크기로 출력
-        ---------------------------------------------------- */
-        const inventoryCountInput = document.getElementById("inventoryCountInput");
-        const count = parseInt(inventoryCountInput?.value, 10) || 0;
 
+            * 대상 좌표 : 606, 180부터
+            * 34, 32, 52면 크롭, 66, 40, 60이면 그만
+
+            * 크롭: 원본 (x: 603, y: 180) 위치에서 114x114 크기
+            * x, y 모두 120씩 증가
+            
+            * 붙이기: 템플릿 (x: 383, y: 136) 위치에 114x114 크기
+            * x, y 모두 120씩 증가
+        ---------------------------------------------------- */
+        let comboLevels = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
         const inventoryFileInput = document.getElementById("inventoryInput");
-        if (count > 0 && inventoryFileInput && inventoryFileInput.files && inventoryFileInput.files[0]) {
+        if (inventoryFileInput && inventoryFileInput.files && inventoryFileInput.files[0]) {
             const inventoryFile = inventoryFileInput.files[0];
             const inventoryObjectURL = URL.createObjectURL(inventoryFile);
 
             try {
                 const inventoryImg = await loadImage(inventoryObjectURL);
 
-                // 입력받은 개수(count)만큼 반복하며 아래로 내려가며 크롭 및 그리기
-                for (let i = 0; i < count; i++) {
-                    // drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
-                    ctx.drawImage(inventoryImg, 603, 180 + (i * 120), 714, 114, 383, 136 + (i * 120), 714, 114);
+                const tempCanvas = document.createElement("canvas");
+                const tempCtx = tempCanvas.getContext("2d", { willReadFrequently: true });
+                tempCanvas.width = inventoryImg.width;
+                tempCanvas.height = inventoryImg.height;
+                tempCtx.drawImage(inventoryImg, 0, 0);
+
+                const stopColor = [66, 40, 60];
+
+                let index = 0;
+                const startX = 606;
+                const startY = 180;
+                const pasteX = 383;
+                const pasteY = 136;
+
+                while (true) {
+                    const indexX = index % 6;
+                    const indexY = Math.floor(index / 6);
+
+                    let pixelData = tempCtx.getImageData(startX+indexX*120, startY+indexY*120, 1, 1).data;
+                    diffR = Math.abs(pixelData[0] - stopColor[0]);
+                    diffG = Math.abs(pixelData[1] - stopColor[1]);
+                    diffB = Math.abs(pixelData[2] - stopColor[2]);
+
+                    if (diffR < 5 && diffG < 5 && diffB < 5) {
+                        break;
+                    }
+
+                    ctx.drawImage(inventoryImg, startX+indexX*120-3, startY+indexY*120, 114, 114, pasteX+indexX*120, pasteY+indexY*120, 114, 114);
+                    index = index+1;
                 }
             } catch (e) {
                 console.warn("인벤토리 이미지 로드 실패:", e);
-            } finally {
-                URL.revokeObjectURL(inventoryObjectURL); // 메모리 해제
             }
-        }
 
-        /* ----------------------------------------------------
-           ⑤ 콤보 처리 (시작 x: 1225, y: 106 / x간격: 27, y간격: 46)
-        ---------------------------------------------------- */
-        let comboY = 106;
-        for (let i = 0; i < comboData.length; i++) {
-            const checkedRadio = document.querySelector(`input[name="combo_group_${i}"]:checked`);
-            if (checkedRadio) {
-                const tier = parseInt(checkedRadio.dataset.tier, 10) || 0;
 
-                // tier가 0 초과인 경우에만 해당 tier 번호의 이미지를 불러와 출력
-                if (tier > 0) {
-                    const gaugeImgSrc = `assets/comboGauge${tier}.png`;
-                    try {
-                        const gaugeImg = await loadImage(gaugeImgSrc);
+            // 인벤토리 이미지에서 콤보 정보 추출
+            try {
+                const uploadedImg = await loadImage(inventoryObjectURL);
+        
+                // 1. 임시 캔버스에 업로드 이미지 로드
+                const tempCanvas = document.createElement("canvas");
+                const tempCtx = tempCanvas.getContext("2d", { willReadFrequently: true });
+                tempCanvas.width = uploadedImg.width;
+                tempCanvas.height = uploadedImg.height;
+                tempCtx.drawImage(uploadedImg, 0, 0);
 
-                        let comboX = 1225;
-                        for (let t = 0; t < tier; t++) {
-                            ctx.drawImage(gaugeImg, comboX, comboY);
-                            comboX += 27;
+                // 2. 서버/로컬에 등록된 원본 콤보 아이콘 20개 사전 로드
+                const templateIcons = [];
+                for (let i = 0; i < 20; i++) {
+                    const iconImg = await loadImage(`assets/icons/combo/${i + 1}.png`);
+                    
+                    // 비교용 임시 캔버스 추출 (아이콘 기본 크기에 맞춤 150 * 24)
+                    const iconCanvas = document.createElement("canvas");
+                    iconCanvas.width = 150;
+                    iconCanvas.height = 24;
+                    const iconCtx = iconCanvas.getContext("2d", { willReadFrequently: true });
+                    iconCtx.drawImage(iconImg, 0, 0, 150, 24);
+
+                    templateIcons.push({
+                        index: i,
+                        imageData: iconCtx.getImageData(0, 0, 150, 24)
+                    });
+                }
+                
+                /* 
+                3. 업로드 이미지에서 콤보 목록 아이콘 영역 스캔 및 크롭 
+                * 제공해주신 스크린샷 기준 콤보 창 좌상단 패널 아이콘 좌표 설정
+                * (픽셀 좌표는 스크린샷 해상도에 맞춰 sx, sy, rowGap을 조절해주시면 됩니다)
+                */
+                const targetX = 94;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
+                let targetY = 200;   // 스크린샷 내 첫번째 콤보 아이콘 Y 좌표
+                
+                while (true) {
+                    const pData = tempCtx.getImageData(targetX,targetY,1,1).data;
+                    if ( colorCheck(pData,[0,0,0]) ) {
+                        const cropData = tempCtx.getImageData(targetX+57, targetY, 150, 24);
+
+                        let bestMatchIndex = -1;
+                        let lowestMSE = Infinity;
+
+                        // 20개 아이콘 템플릿과 MSE 비교
+                        for (const tpl of templateIcons) {
+                            const mse = calculateMSE(cropData, tpl.imageData);
+                            if (mse < lowestMSE) {
+                                lowestMSE = mse;
+                                bestMatchIndex = tpl.index;
+                            }
                         }
-                    } catch (e) {
-                        console.warn(`콤보 게이지 이미지 로드 실패: ${gaugeImgSrc}`);
+
+                        // 오차 한계값(Threshold) 이하일 경우 숫자 색을 보고 레벨 적용
+                        if (lowestMSE < 1200 && bestMatchIndex !== -1) {
+                            for (let i = 0; i < 6; i++) {
+                                const comboPData = tempCtx.getImageData(targetX+57+14, targetY+33+(i*2), 1, 1).data;
+                                if (colorCheck(comboPData,[255,0,142])) {
+                                    comboLevels[bestMatchIndex] = 5;
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[255,210,0])) {
+                                    comboLevels[bestMatchIndex] = 4;
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[73,153,255])) {
+                                    comboLevels[bestMatchIndex] = 3;
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[153,255,189])) {
+                                    comboLevels[bestMatchIndex] = 2;
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[255,255,255])) {
+                                    comboLevels[bestMatchIndex] = 1;
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[128,128,128])) {
+                                    comboLevels[bestMatchIndex] = 0;
+                                    break;
+                                }
+                            }
+                        }
+                        targetY += 60;
+
+                    } else {
+                        targetY += 1;
+                    }
+
+                    if (targetY > 550) {
+                        break;
                     }
                 }
+            } catch (err) {
+                console.error("콤보 이미지 자동 판별 중 오류:", err);
+            } finally {
+                URL.revokeObjectURL(inventoryObjectURL);
             }
-            comboY += 46; // 다음 콤보로 이동 시 Y좌표 내림
+            console.log(comboLevels)
+        }
+
+        const comboFileInput = document.getElementById("comboInput");
+        if (comboFileInput && comboFileInput.files && comboFileInput.files[0]) {
+            const comboFile = comboFileInput.files[0];
+            const comboObjectURL = URL.createObjectURL(comboFile);
+
+            // 추가 이미지에서 콤보 정보 추출
+            try {
+                const uploadedImg = await loadImage(comboObjectURL);
+        
+                // 1. 임시 캔버스에 업로드 이미지 로드
+                const tempCanvas = document.createElement("canvas");
+                const tempCtx = tempCanvas.getContext("2d", { willReadFrequently: true });
+                tempCanvas.width = uploadedImg.width;
+                tempCanvas.height = uploadedImg.height;
+                tempCtx.drawImage(uploadedImg, 0, 0);
+
+                // 2. 서버/로컬에 등록된 원본 콤보 아이콘 20개 사전 로드
+                const templateIcons = [];
+                for (let i = 0; i < 20; i++) {
+                    const iconImg = await loadImage(`assets/icons/combo/${i + 1}.png`);
+                    
+                    // 비교용 임시 캔버스 추출 (아이콘 기본 크기에 맞춤 150 * 24)
+                    const iconCanvas = document.createElement("canvas");
+                    iconCanvas.width = 150;
+                    iconCanvas.height = 24;
+                    const iconCtx = iconCanvas.getContext("2d", { willReadFrequently: true });
+                    iconCtx.drawImage(iconImg, 0, 0, 150, 24);
+
+                    templateIcons.push({
+                        index: i,
+                        imageData: iconCtx.getImageData(0, 0, 150, 24)
+                    });
+                }
+                
+                /* 
+                3. 업로드 이미지에서 콤보 목록 아이콘 영역 스캔 및 크롭 
+                * 제공해주신 스크린샷 기준 콤보 창 좌상단 패널 아이콘 좌표 설정
+                * (픽셀 좌표는 스크린샷 해상도에 맞춰 sx, sy, rowGap을 조절해주시면 됩니다)
+                */
+                const targetX = 94;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
+                let targetY = 200;   // 스크린샷 내 첫번째 콤보 아이콘 Y 좌표
+                
+                while (true) {
+                    const pData = tempCtx.getImageData(targetX,targetY,1,1).data;
+                    if ( colorCheck(pData,[0,0,0]) ) {
+                        const cropData = tempCtx.getImageData(targetX+57, targetY, 150, 24);
+
+                        let bestMatchIndex = -1;
+                        let lowestMSE = Infinity;
+
+                        // 20개 아이콘 템플릿과 MSE 비교
+                        for (const tpl of templateIcons) {
+                            const mse = calculateMSE(cropData, tpl.imageData);
+                            if (mse < lowestMSE) {
+                                lowestMSE = mse;
+                                bestMatchIndex = tpl.index;
+                            }
+                        }
+
+                        // 오차 한계값(Threshold) 이하일 경우 숫자 색을 보고 레벨 적용
+                        if (lowestMSE < 1200 && bestMatchIndex !== -1) {
+                            for (let i = 0; i < 6; i++) {
+                                const comboPData = tempCtx.getImageData(targetX+57+14, targetY+33+(i*2), 1, 1).data;
+                                if (colorCheck(comboPData,[255,0,142])) {
+                                    if (comboLevels[bestMatchIndex] < 5) {
+                                        comboLevels[bestMatchIndex] = 5;
+                                    }
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[255,210,0])) {
+                                    if (comboLevels[bestMatchIndex] < 4) {
+                                        comboLevels[bestMatchIndex] = 4;
+                                    }
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[73,153,255])) {
+                                    if (comboLevels[bestMatchIndex] < 3) {
+                                        comboLevels[bestMatchIndex] = 3;
+                                    }
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[153,255,189])) {
+                                    if (comboLevels[bestMatchIndex] < 2) {
+                                        comboLevels[bestMatchIndex] = 2;
+                                    }
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[255,255,255])) {
+                                    if (comboLevels[bestMatchIndex] < 1) {
+                                        comboLevels[bestMatchIndex] = 1;
+                                    }
+                                    break;
+                                }
+                                if (colorCheck(comboPData,[128,128,128])) {
+                                    if (comboLevels[bestMatchIndex] < 0) {
+                                        comboLevels[bestMatchIndex] = 0;
+                                    }
+                                    break;
+                                }
+                            }
+                        }
+                        targetY += 60;
+
+                    } else {
+                        targetY += 1;
+                    }
+
+                    if (targetY > 550) {
+                        break;
+                    }
+                }
+            } catch (err) {
+                console.error("콤보 이미지 자동 판별 중 오류:", err);
+            } finally {
+                URL.revokeObjectURL(comboObjectURL);
+            }
+            console.log(comboLevels)
+        }
+
+        // 콤보 그리기 (시작 x: 1225, y: 106 / x간격: 27, y간격: 46)
+        let comboY = 106;
+        for (let i = 0; i < comboLevels.length; i++) {
+            const comboLevel = comboLevels[i];
+
+            if (comboLevel > 0) {
+                const gaugeImgSrc = `assets/comboGauge${comboLevel}.png`;
+                try {
+                    const gaugeImg = await loadImage(gaugeImgSrc);
+
+                    let comboX = 1225;
+                    for (let t = 0; t < comboLevel; t++) {
+                        ctx.drawImage(gaugeImg, comboX, comboY);
+                        comboX += 27;
+                    }
+                } catch (e) {
+                    console.warn(`콤보 게이지 이미지 로드 실패: ${gaugeImgSrc}`);
+                }
+            }
+            comboY += 46; // 다음 콤보로 이동 시 Y좌표 내림            
         }
 
         /* ----------------------------------------------------
