@@ -1200,13 +1200,14 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 * 제공해주신 스크린샷 기준 콤보 창 좌상단 패널 아이콘 좌표 설정
                 * (픽셀 좌표는 스크린샷 해상도에 맞춰 sx, sy, rowGap을 조절해주시면 됩니다)
                 */
-                const targetX = 94;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
+                const targetX = 98;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
                 let targetY = 200;   // 스크린샷 내 첫번째 콤보 아이콘 Y 좌표
                 
                 while (true) {
+                    const ppData = tempCtx.getImageData(targetX,targetY-1,1,1).data;
                     const pData = tempCtx.getImageData(targetX,targetY,1,1).data;
-                    if ( colorCheck(pData,[0,0,0]) ) {
-                        const cropData = tempCtx.getImageData(targetX+57, targetY, 150, 24);
+                    if ( colorCheck(pData,[0,0,0]) && colorCheck(ppData,[61,45,57]) ) {
+                        const cropData = tempCtx.getImageData(targetX+53, targetY, 150, 24);
 
                         let bestMatchIndex = -1;
                         let lowestMSE = Infinity;
@@ -1220,6 +1221,7 @@ document.getElementById("makeButton").addEventListener("click", async function()
                             }
                         }
 
+                        console.log(targetY,bestMatchIndex)
                         // 오차 한계값(Threshold) 이하일 경우 숫자 색을 보고 레벨 적용
                         if (lowestMSE < 1200 && bestMatchIndex !== -1) {
                             for (let i = 0; i < 6; i++) {
@@ -1256,7 +1258,7 @@ document.getElementById("makeButton").addEventListener("click", async function()
                         targetY += 1;
                     }
 
-                    if (targetY > 550) {
+                    if (targetY > 600) {
                         break;
                     }
                 }
@@ -1307,13 +1309,14 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 * 제공해주신 스크린샷 기준 콤보 창 좌상단 패널 아이콘 좌표 설정
                 * (픽셀 좌표는 스크린샷 해상도에 맞춰 sx, sy, rowGap을 조절해주시면 됩니다)
                 */
-                const targetX = 94;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
+                const targetX = 98;    // 스크린샷 내 첫번째 콤보 아이콘 X 좌표
                 let targetY = 200;   // 스크린샷 내 첫번째 콤보 아이콘 Y 좌표
                 
                 while (true) {
+                    const ppData = tempCtx.getImageData(targetX,targetY-1,1,1).data;
                     const pData = tempCtx.getImageData(targetX,targetY,1,1).data;
-                    if ( colorCheck(pData,[0,0,0]) ) {
-                        const cropData = tempCtx.getImageData(targetX+57, targetY, 150, 24);
+                    if ( colorCheck(pData,[0,0,0]) && colorCheck(ppData,[61,45,57]) ) {
+                        const cropData = tempCtx.getImageData(targetX+53, targetY, 150, 24);
 
                         let bestMatchIndex = -1;
                         let lowestMSE = Infinity;
@@ -1327,6 +1330,7 @@ document.getElementById("makeButton").addEventListener("click", async function()
                             }
                         }
 
+                        console.log(targetY,bestMatchIndex)
                         // 오차 한계값(Threshold) 이하일 경우 숫자 색을 보고 레벨 적용
                         if (lowestMSE < 1200 && bestMatchIndex !== -1) {
                             for (let i = 0; i < 6; i++) {
@@ -1375,7 +1379,7 @@ document.getElementById("makeButton").addEventListener("click", async function()
                         targetY += 1;
                     }
 
-                    if (targetY > 550) {
+                    if (targetY > 600) {
                         break;
                     }
                 }
