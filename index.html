@@ -1098,8 +1098,8 @@ document.getElementById("makeButton").addEventListener("click", async function()
         }
         
 
-        const scoreImgSrc2 = `assets/root/r${Math.floor(totalScore / 10)}.png`;
-        const scoreImgSrc1 = `assets/root/r${totalScore % 10}.png`;
+        const scoreImgSrc2 = `assets/root/r${Math.floor(realScore / 10)}.png`;
+        const scoreImgSrc1 = `assets/root/r${realScore % 10}.png`;
         try {
             const scoreImg2 = await loadImage(scoreImgSrc2);
             const scoreImg1 = await loadImage(scoreImgSrc1);
