@@ -1016,6 +1016,8 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 URL.revokeObjectURL(rootObjectURL);
             }
 
+            console.log(totalScore,realScore)
+
             if (realScore - totalScore == 5) {
                 roots[0][6] = 3;
                 roots[0][7] = 2;
@@ -1138,6 +1140,7 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 tempCtx.drawImage(inventoryImg, 0, 0);
 
                 const stopColor = [66, 40, 60];
+                const stopColor2 = [98, 49, 68];
 
                 let index = 0;
                 const startX = 606;
@@ -1145,16 +1148,13 @@ document.getElementById("makeButton").addEventListener("click", async function()
                 const pasteX = 383;
                 const pasteY = 136;
 
-                for (let i = 0;i<42;i++) {
+                for (let i = 0 ; i < 42 ; i++) {
                     const indexX = index % 6;
                     const indexY = Math.floor(index / 6);
 
                     let pixelData = tempCtx.getImageData(startX+indexX*120, startY+indexY*120, 1, 1).data;
-                    diffR = Math.abs(pixelData[0] - stopColor[0]);
-                    diffG = Math.abs(pixelData[1] - stopColor[1]);
-                    diffB = Math.abs(pixelData[2] - stopColor[2]);
 
-                    if (diffR < 5 && diffG < 5 && diffB < 5) {
+                    if (colorCheck(pixelData,stopColor) || colorCheck(pixelData,stopColor2)) {
                         break;
                     }
 
